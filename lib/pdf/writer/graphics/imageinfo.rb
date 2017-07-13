@@ -103,9 +103,9 @@ class PDF::Writer::Graphics::ImageInfo
   def discover_format
     if    @top        =~ %r{^GIF8[79]a}
       Formats::GIF
-    elsif @top[0, 3]  == "\xff\xd8\xff".b
+    elsif @top[0, 3]  == "\xff\xd8\xff"
       Formats::JPEG
-    elsif @top[0, 8]  == "\x89PNG\x0d\x0a\x1a\x0a".b
+    elsif @top[0, 8]  == "\x89PNG\x0d\x0a\x1a\x0a"
       Formats::PNG
     elsif @top[0, 3]  == "FWS"
       Formats::SWF
@@ -113,11 +113,11 @@ class PDF::Writer::Graphics::ImageInfo
       Formats::PSD
     elsif @top[0, 2]  == 'BM'
       Formats::BMP
-    elsif @top[0, 4]  == "MM\x00\x2a".b
+    elsif @top[0, 4]  == "MM\x00\x2a"
       Formats::TIFF
-    elsif @top[0, 4]  == "II\x2a\x00".b
+    elsif @top[0, 4]  == "II\x2a\x00"
       Formats::TIFF
-    elsif @top[0, 12] == "\x00\x00\x00\x0c\x6a\x50\x20\x20\x0d\x0a\x87\x0a".b
+    elsif @top[0, 12] == "\x00\x00\x00\x0c\x6a\x50\x20\x20\x0d\x0a\x87\x0a"
       Formats::JP2
     elsif @top        =~ %r{^P[1-7]}
       Formats::PPM
@@ -170,7 +170,7 @@ class PDF::Writer::Graphics::ImageInfo
   private :measure_PNG
 
   def measure_JPEG
-    c_marker = "\xff".b # Section marker.
+    c_marker = "\xff" # Section marker.
     @data.read_o(2)   # Skip the first two bytes of JPEG identifier.
     loop do
       marker, code, length = @data.read_o(4).unpack('aan')
