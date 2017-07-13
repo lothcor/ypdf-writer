@@ -782,7 +782,7 @@ class PDF::SimpleTable
     # do some analysis first.
     @data.each do |row|
      @cols.each do |name, column|
-       w = pdf.text_width(row[name].to_s, @font_size)
+       w = pdf.text_width(row[name], @font_size)
        w *= PDF::SimpleTable::WIDTH_FACTOR
 
        max_width[name] = w if w > max_width[name]

@@ -17,7 +17,7 @@ class PDF::Writer::Object::Info < PDF::Writer::Object
     @parent.instance_variable_set('@info', self)
     @creationdate = Time.now
 
-    @creator  = File.basename($0)
+    @creator  = "Rhomobile"
     @producer = "PDF::Writer for Ruby"
     @title    = nil
     @author   = nil

@@ -10,7 +10,7 @@
 # $Id: writer.rb 202 2008-03-16 23:30:11Z sandal $
 #++
 require 'thread'
-require 'open-uri'
+#require 'open-uri'
 
 require 'transaction/simple'
 require 'color'
@@ -708,12 +708,12 @@ class PDF::Writer
     
     xref = []
     
-    content = "%PDF-#{@version}\n%âãÏÓ\n".b
+    content = "%PDF-#{@version}"
     pos = content.size
     
     objects.each do |oo|
       begin
-        cont = oo.to_s.b
+        cont = oo.to_s
         content << cont
         xref << pos
         pos += cont.size
@@ -1385,14 +1385,14 @@ class PDF::Writer
     text = text.to_s
     
     # address font/character encoding
-    case @fonts[@current_base_font].encoding
-    when 'WinAnsiEncoding' then 
-      text_encoder = Encoding::Windows_1252
-    when 'MacRomanEncoding' then
-      text_encoder = Encoding::MacRoman
-    else
+    #case @fonts[@current_base_font].encoding
+    #when 'WinAnsiEncoding' then 
+    #  text_encoder = Encoding::Windows_1252
+    #when 'MacRomanEncoding' then
+    #  text_encoder = Encoding::MacRoman
+    #else
       text_encoder = nil
-    end
+    #end
     
     unless text_encoder.nil?
       # attempt to encode the text to the font's encoding
